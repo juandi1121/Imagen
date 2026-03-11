@@ -1,0 +1,267 @@
+table '.Medidas'
+	lineageTag: 3984d6c4-31ea-4739-8593-8c50ea203ab5
+
+	measure 'Dif Hoy' =
+			CALCULATE(
+			    [Venta_Diaria] - [Presupuesto Hoy]
+			)
+		formatString: #,0
+		lineageTag: d0842366-08c2-43f0-bb78-dc61cf86d4a4
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Presupuesto Hoy' = ```
+			
+			VAR FechaHoraLocal =
+			    NOW() - TIME(5, 0, 0)
+			VAR FechaLimite =
+			    IF(
+			        ISFILTERED('Calendar'[Date]),
+			        MAX('Calendar'[Date]),
+			        DATE(YEAR(FechaHoraLocal), MONTH(FechaHoraLocal), DAY(FechaHoraLocal))
+			    )
+			RETURN
+			CALCULATE(
+			    SUM('Presupuesto'[PPTO]),
+			    FILTER(
+			        'Presupuesto',
+			        'Presupuesto'[Fecha] = FechaLimite
+			    )
+			) / 1000000
+			
+			
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 30b0910f-256a-4c05-8a9e-6d8b74e62200
+
+	measure Venta_Diaria =
+			
+			VAR FechaHoraLocal = NOW() - TIME(5, 0, 0)
+			VAR FechaLocal =
+			    DATE(
+			        YEAR(FechaHoraLocal),
+			        MONTH(FechaHoraLocal),
+			        DAY(FechaHoraLocal)
+			    )
+			VAR Venta =
+			    CALCULATE(
+			        SUM('Venta_Diaria'[mov_vlr_subtotal]),
+			        Venta_Diaria[id_fecha] = FechaLocal
+			    )
+			RETURN
+			COALESCE( Venta / 1000000, 0 )
+		formatString: \$\ #,0;-\$\ #,0;\$\ #,0
+		lineageTag: b97fc925-7447-4b84-aa3e-fb0607b019ab
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-CO"}
+
+	measure 'U.N_Seleccionada.' = ```
+			
+			VAR Seleccion = SELECTEDVALUE('Unidades_Negocio'[Nombre_UN])
+			RETURN
+			    IF(
+			        ISBLANK(Seleccion),
+			        "Total Cadena",
+			        Seleccion
+			    )
+			
+			```
+		lineageTag: b8919d64-14e1-447d-a77c-1d7b06ea6321
+
+	measure Ranking_Venta = ```
+			
+			RANKX(
+			    ALL('Centros_Operación'[centroop_id]),
+			    [%Cump_Hoy_],
+			    ,
+			    DESC,
+			    DENSE
+			)
+			
+			
+			```
+		formatString: 0
+		lineageTag: 405227a5-7efd-41cd-a155-5f060bfc753f
+
+	measure %Cump_Hoy_ = ```
+			DIVIDE([Venta_Diaria], [Presupuesto Hoy], 0)
+			
+			```
+		formatString: 0\ %;-0\ %;0\ %
+		lineageTag: 4efcc645-4105-4f0b-bb5a-a458489c06bf
+
+	measure %Cumpl_Ideal =
+			
+			DIVIDE(
+			[Días_Ejecutados], [Días_Mes]
+			)
+		formatString: 0\ %;-0\ %;0\ %
+		lineageTag: 93a09081-c315-4db0-9e9e-052caa7850e3
+
+	measure Días_Ejecutados =
+			
+			VAR FechaLimite = TODAY() - 1
+			RETURN
+			CALCULATE(
+			    DISTINCTCOUNT('Calendar'[Date]),
+			    FILTER(
+			        ALL('Calendar'),
+			        'Calendar'[Date] <= FechaLimite &&
+			        'Calendar'[Date] IN VALUES('Calendar'[Date])
+			    )
+			)
+		formatString: 0
+		lineageTag: 9dc24640-1530-4cf1-9920-5224618f927c
+
+	measure Presupuesto_al_Día =
+			
+			VAR FechaLimite = TODAY() - 1
+			RETURN
+			CALCULATE(
+			    SUM(Presupuesto[PPTO]),
+			    FILTER(
+			        ALL('Calendar'),
+			        'Calendar'[Date] <= FechaLimite &&
+			        'Calendar'[Date] IN VALUES('Calendar'[Date])
+			    )
+			) /1000000
+		formatString: #,0
+		lineageTag: fb7dcf9a-443c-40bb-936d-4ef5458cf098
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Presupuesto_Hoy..' =
+			
+			VAR FechaLimite =
+			    IF(
+			        ISFILTERED('Calendar'[Date]),
+			        MAX('Calendar'[Date]),
+			        TODAY()
+			    )
+			
+			RETURN
+			CALCULATE(
+			    SUM(Presupuesto[PPTO]),
+			    FILTER(
+			        'Presupuesto',
+			        'Presupuesto'[FECHA] = FechaLimite
+			    )
+			) / 1000000
+		formatString: #,0
+		lineageTag: 491081ee-1a31-4170-b1b9-59230960f91a
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Presupuesto_Total =
+			
+			CALCULATE(
+			    SUM(Presupuesto[PPTO]),
+			    REMOVEFILTERS('Calendar'[Date]),
+			    VALUES('Calendar'[Date].[Year]),
+			    VALUES('Calendar'[Date].[Month])
+			) /1000000
+		formatString: #,0
+		lineageTag: 502c895f-d8e8-4759-a61d-511ff989eac3
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure %Cump_Hoy = ```
+			DIVIDE([Venta_Diaria], [Presupuesto Hoy], 0) * 100
+			
+			```
+		formatString: \$\ #,0.###############;-\$\ #,0.###############;\$\ #,0.###############
+		lineageTag: 1e864855-6467-4291-bf83-88b7fcd35b27
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-CO"}
+
+	measure Días_Mes = ```
+			
+			CALCULATE(
+			    DISTINCTCOUNT('Calendar'[Date]),
+			    REMOVEFILTERS('Calendar'[Date]),
+			    VALUES('Calendar'[Date].[Year]),
+			    VALUES('Calendar'[Date].[Month])
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 22a04742-891e-44b7-aa0d-26ede6270abc
+
+	measure Fechas_Ejecutadas =
+			
+			FILTER(
+			    VALUES('Calendar'[Date]),
+			    'Calendar'[Date] <= TODAY() - 1
+			)
+		formatString: General Date
+		lineageTag: 679e755d-3756-4fa6-9ebf-68f6c5b2031c
+
+	measure Hora_Actual = TIME(HOUR(NOW()), MINUTE(NOW()), SECOND(NOW()))
+		formatString: h:nn\ AM/PM
+		lineageTag: c549b6f1-5d94-48a7-80ba-afa03bbcda2f
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	measure 'HOY.' =
+			
+			VAR FechaLocal = NOW() - TIME(5, 0, 0)
+			RETURN
+			DATE(YEAR(FechaLocal), MONTH(FechaLocal), DAY(FechaLocal))
+		formatString: Short Date
+		lineageTag: 75e7bdcc-4e2a-490e-88cb-99ddda646e97
+
+	measure Título_Dinámico = ```
+			
+			VAR FechaMax = MAX('Calendar'[Date])
+			VAR MesNum = MONTH(FechaMax)
+			VAR MesNombre = 
+			    SWITCH(
+			        MesNum,
+			        1, "Enero",
+			        2, "Febrero",
+			        3, "Marzo",
+			        4, "Abril",
+			        5, "Mayo",
+			        6, "Junio",
+			        7, "Julio",
+			        8, "Agosto",
+			        9, "Septiembre",
+			        10, "Octubre",
+			        11, "Noviembre",
+			        12, "Diciembre"
+			    )
+			VAR Ano = YEAR(FechaMax)
+			VAR AnoAnterior = Ano - 1
+			RETURN 
+			"SEGUIMIENTO A LA VENTA - MARGEN " & 
+			UPPER(MesNombre) & " DE " & Ano & " VS " & UPPER(MesNombre) & " DE " & AnoAnterior
+			```
+		lineageTag: 13d2471c-a11d-4f75-bf51-55927e9eeda7
+
+	measure 'Fecha Local Simulada' = ```
+			
+			VAR HoraUTC_Simulada = DATE(2025, 9, 7) + TIME(0, 30, 0)  -- 00:30 a.m. UTC
+			VAR FechaHoraLocal = HoraUTC_Simulada - TIME(5, 0, 0)     -- Ajuste a UTC-5
+			RETURN
+			FechaHoraLocal
+			
+			
+			```
+		formatString: General Date
+		lineageTag: 8f006214-d4bd-40b6-be1f-6970eb718b5c
+
+	column Column
+		formatString: 0
+		lineageTag: 402b4aad-c332-4fc3-93e6-d68061379a9e
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '.Medidas' = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = b68fe8a63644455f8a6e3c4d8470a3f1
+

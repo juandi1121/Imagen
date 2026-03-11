@@ -1,0 +1,259 @@
+table Venta_Diaria
+	lineageTag: 79d08e46-fe8f-497e-9e5c-3496847e2c09
+
+	column cia_id
+		dataType: int64
+		formatString: 0
+		lineageTag: bd8263d1-ad72-4608-bc93-af2dde880247
+		summarizeBy: sum
+		sourceColumn: cia_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column periodo
+		dataType: int64
+		formatString: 0
+		lineageTag: 383f1e47-72de-49f3-ab55-4f8a2fb65e16
+		summarizeBy: sum
+		sourceColumn: periodo
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_fecha
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 1ecbeb3d-4076-4924-934d-984f047c3b3b
+		summarizeBy: none
+		sourceColumn: id_fecha
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column vendedor_serial
+		dataType: string
+		lineageTag: a5e156e6-dcf6-4ecc-aa0d-3592f855f0ba
+		summarizeBy: none
+		sourceColumn: vendedor_serial
+
+		annotation SummarizationSetBy = Automatic
+
+	column centroop_doc_serial
+		dataType: string
+		lineageTag: f30956f2-c7c3-4ad5-8de9-7f5bce8bd726
+		summarizeBy: none
+		sourceColumn: centroop_doc_serial
+
+		annotation SummarizationSetBy = Automatic
+
+	column centro_op_doc
+		dataType: string
+		lineageTag: aacb4fc1-520e-465e-b52f-74396c1adfe9
+		summarizeBy: none
+		sourceColumn: centro_op_doc
+
+		annotation SummarizationSetBy = Automatic
+
+	column centroop_serial
+		dataType: string
+		lineageTag: 743b319e-8588-43eb-8698-981a34d59631
+		summarizeBy: none
+		sourceColumn: centroop_serial
+
+		annotation SummarizationSetBy = Automatic
+
+	column centro_op
+		dataType: string
+		lineageTag: 24365ec0-0375-44af-9c48-c883d7b6f6d6
+		summarizeBy: none
+		sourceColumn: centro_op
+
+		annotation SummarizationSetBy = Automatic
+
+	column tpv
+		dataType: string
+		lineageTag: 20388a39-f52e-4c1e-b1f7-85a7505a1100
+		summarizeBy: none
+		sourceColumn: tpv
+
+		annotation SummarizationSetBy = Automatic
+
+	column item_serial
+		dataType: string
+		lineageTag: 1b14c41d-1223-469a-8898-01e3ec9f4f51
+		summarizeBy: none
+		sourceColumn: item_serial
+
+		annotation SummarizationSetBy = Automatic
+
+	column unidad_negocio_serial
+		dataType: string
+		lineageTag: 75ed147e-fcec-40e9-9032-1891fe04ec8b
+		summarizeBy: none
+		sourceColumn: unidad_negocio_serial
+
+		annotation SummarizationSetBy = Automatic
+
+	column lista_precio
+		dataType: string
+		lineageTag: 5fe1fc7c-250f-4984-b0cb-e3817dec85d1
+		summarizeBy: none
+		sourceColumn: lista_precio
+
+		annotation SummarizationSetBy = Automatic
+
+	column bodega_serial
+		dataType: string
+		lineageTag: fb32d34e-250a-4ff5-be26-79190ca9a4cf
+		summarizeBy: none
+		sourceColumn: bodega_serial
+
+		annotation SummarizationSetBy = Automatic
+
+	column devo_causales_id
+		dataType: string
+		lineageTag: 5932e89a-cc45-4497-ab20-1f74d49f119a
+		summarizeBy: none
+		sourceColumn: devo_causales_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column devo_causales
+		dataType: string
+		lineageTag: 116aa878-2acf-4ae1-8577-ddfa7c095722
+		summarizeBy: none
+		sourceColumn: devo_causales
+
+		annotation SummarizationSetBy = Automatic
+
+	column motivo_venta
+		dataType: string
+		lineageTag: a8dcaaf6-0024-43b5-a8e3-52ee88330747
+		summarizeBy: none
+		sourceColumn: motivo_venta
+
+		annotation SummarizationSetBy = Automatic
+
+	column cantidad_und_inv
+		dataType: double
+		lineageTag: 85ccc114-97fc-4604-8931-14c28cb056c7
+		summarizeBy: sum
+		sourceColumn: cantidad_und_inv
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column mov_costo_promedio
+		dataType: decimal
+		formatString: \$\ #,0.###############;-\$\ #,0.###############;\$\ #,0.###############
+		lineageTag: f262d99f-add0-4fd9-b754-2a8f8aaeccd8
+		summarizeBy: sum
+		sourceColumn: mov_costo_promedio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-CO"}
+
+	column mov_margen
+		dataType: decimal
+		formatString: \$\ #,0.###############;-\$\ #,0.###############;\$\ #,0.###############
+		lineageTag: 230726e3-5a0a-4aa9-9d79-d06a4d5a93e9
+		summarizeBy: sum
+		sourceColumn: mov_margen
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-CO"}
+
+	column mov_vlr_bruto
+		dataType: decimal
+		formatString: \$\ #,0.###############;-\$\ #,0.###############;\$\ #,0.###############
+		lineageTag: 2e1210e5-ae11-40d9-b3c0-533a25793d09
+		summarizeBy: sum
+		sourceColumn: mov_vlr_bruto
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-CO"}
+
+	column mov_vlr_descuento
+		dataType: decimal
+		formatString: \$\ #,0.###############;-\$\ #,0.###############;\$\ #,0.###############
+		lineageTag: ed6dd70a-22c0-4176-a424-7ebb20200868
+		summarizeBy: sum
+		sourceColumn: mov_vlr_descuento
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-CO"}
+
+	column mov_vlr_subtotal
+		dataType: decimal
+		formatString: \$\ #,0.###############;-\$\ #,0.###############;\$\ #,0.###############
+		lineageTag: 1a985fef-1f56-4dfb-863e-afe3f278f6f4
+		summarizeBy: sum
+		sourceColumn: mov_vlr_subtotal
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-CO"}
+
+	column mov_vlr_impuesto
+		dataType: decimal
+		formatString: \$\ #,0.###############;-\$\ #,0.###############;\$\ #,0.###############
+		lineageTag: ec32018f-b4dc-4c97-a868-0195ef3eba0a
+		summarizeBy: sum
+		sourceColumn: mov_vlr_impuesto
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-CO"}
+
+	column mov_vlr_total
+		dataType: decimal
+		formatString: \$\ #,0.###############;-\$\ #,0.###############;\$\ #,0.###############
+		lineageTag: 4bb97e65-11c3-4310-9c82-3ea6fedd9b1e
+		summarizeBy: sum
+		sourceColumn: mov_vlr_total
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-CO"}
+
+	column Hora_Act
+		dataType: string
+		lineageTag: a2484c19-f4e7-4f63-8de6-ac968f4ffab3
+		summarizeBy: none
+		sourceColumn: Hora_Act
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Hora_Act - Copia'
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: 225c4fad-5a01-41f7-8a9a-d0a950ae9e19
+		summarizeBy: none
+		sourceColumn: Hora_Act - Copia
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	partition Venta_Diaria = m
+		mode: import
+		source =
+				let
+				    Origen = PostgreSQL.Database("automatizacion.dsierra.com", "data_dsierra"),
+				    public_vw_venta_diaria_sp = Origen{[Schema="public",Item="vw_venta_diaria_sp"]}[Data],
+				    #"Personalizada agregada" = Table.AddColumn(public_vw_venta_diaria_sp, "Hora_Act", each DateTimeZone.UtcNow() - #duration(0, 5, 0, 0)),
+				    #"Columna duplicada" = Table.DuplicateColumn(#"Personalizada agregada", "Hora_Act", "Hora_Act - Copia"),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Columna duplicada",{{"Hora_Act - Copia", type datetime}}),
+				    #"Tipo cambiado1" = Table.TransformColumnTypes(#"Tipo cambiado",{{"Hora_Act - Copia", type time}})
+				in
+				    #"Tipo cambiado1"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,124 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 293.69321346366382,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 1146.216051002712,
+            "y": 220.94605298604819
+          },
+          "nodeIndex": ".Medidas",
+          "nodeLineageTag": "3984d6c4-31ea-4739-8593-8c50ea203ab5",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 1430.216051002712,
+            "y": 220.94605298604819
+          },
+          "nodeIndex": "TablaRanking",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 1290.9870680750128,
+            "y": 665.93771189385393
+          },
+          "nodeIndex": "Centros_Operación",
+          "nodeLineageTag": "42e1ec1b-e700-4fca-b150-a27be9707dde",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 11
+        },
+        {
+          "location": {
+            "x": 504.95339190732875,
+            "y": 648.407595527863
+          },
+          "nodeIndex": "Venta_Diaria",
+          "nodeLineageTag": "79d08e46-fe8f-497e-9e5c-3496847e2c09",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 1639.7586559078813,
+            "y": 624.48657430125468
+          },
+          "nodeIndex": "Unidades_Negocio",
+          "nodeLineageTag": "95a61231-3f87-4b42-b2c0-b5fb136c7057",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 12
+        },
+        {
+          "location": {
+            "x": 50,
+            "y": 318.01293427543925
+          },
+          "nodeIndex": "Calendar",
+          "nodeLineageTag": "e0504246-4169-4bd5-b863-b6ef04eb3623",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 10
+        },
+        {
+          "location": {
+            "x": 820.86556494443994,
+            "y": 90.322319455702484
+          },
+          "nodeIndex": "Presupuesto",
+          "nodeLineageTag": "547b6214-7566-4bb0-88fd-89cb4e6673d9",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 1873.7586559078813,
+            "y": 415.91513603764321
+          },
+          "nodeIndex": "Actualizacion",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 51.482291730567638,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

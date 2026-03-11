@@ -1,0 +1,102 @@
+table Unidades_Negocio
+	lineageTag: 95a61231-3f87-4b42-b2c0-b5fb136c7057
+
+	column cia_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 0b6b83fa-7c49-473e-9ac0-3ae136de8f3c
+		summarizeBy: sum
+		sourceColumn: cia_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column unidad_negocio_serial
+		dataType: string
+		lineageTag: 84ceed15-0c9a-44cc-96bd-2b0ef4f786eb
+		summarizeBy: none
+		sourceColumn: unidad_negocio_serial
+
+		annotation SummarizationSetBy = Automatic
+
+	column unidad_negocio_id
+		dataType: string
+		lineageTag: ac32ea48-77f4-4310-92ac-fb7328fdc85d
+		summarizeBy: none
+		sourceColumn: unidad_negocio_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column unidad_negocio_descripcion
+		dataType: string
+		lineageTag: ef412022-c39d-4706-8786-c989b6beb03b
+		summarizeBy: none
+		sourceColumn: unidad_negocio_descripcion
+
+		annotation SummarizationSetBy = Automatic
+
+	column unidad_negocio_ind_estado
+		dataType: int64
+		formatString: 0
+		lineageTag: 116dc6c3-6124-4c7b-940d-67dbfa33d0fc
+		summarizeBy: sum
+		sourceColumn: unidad_negocio_ind_estado
+
+		annotation SummarizationSetBy = Automatic
+
+	column unidad_negocio_rowid_movto_entidad
+		dataType: int64
+		formatString: 0
+		lineageTag: b9325fec-c4db-491c-a81e-8e132fc0159f
+		summarizeBy: sum
+		sourceColumn: unidad_negocio_rowid_movto_entidad
+
+		annotation SummarizationSetBy = Automatic
+
+	column unidad_negocio_ts
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 19bdc1a4-0608-4a45-9bb3-d35aeef25570
+		summarizeBy: none
+		sourceColumn: unidad_negocio_ts
+
+		variation Variación
+			isDefault
+			relationship: 141a215b-df62-490d-afa6-059800d048f6
+			defaultHierarchy: LocalDateTable_6e1998c5-973f-413e-87c2-870f2fe3cb1b.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nombre_UN =
+			
+			SWITCH(
+			    TRUE(),
+			    'Unidades_Negocio'[unidad_negocio_id] = "801", "801-Industria",
+			    'Unidades_Negocio'[unidad_negocio_id] = "802", "802-Fruver",
+			    'Unidades_Negocio'[unidad_negocio_id] = "803", "803-Carnes",
+			    'Unidades_Negocio'[unidad_negocio_id] = "804", "804-Ind Alimentos",
+			    'Unidades_Negocio'[unidad_negocio_id] = "805", "805-Panaderia",
+			    'Unidades_Negocio'[unidad_negocio_id] = "807", "807-Sala Procesos",
+			    'Unidades_Negocio'[unidad_negocio_id] = "808", "808-Licores",
+			    'Unidades_Negocio'[unidad_negocio_id] = "809", "809-Ensaladera",
+			    'Unidades_Negocio'[unidad_negocio_id] = "810", "801-Industria",
+			    "Otro"
+			)
+		lineageTag: 1a46f7a8-ed7f-428d-aeda-cad8083d7687
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Unidades_Negocio = m
+		mode: import
+		source =
+				let
+				    Origen = PostgreSQL.Database("automatizacion.dsierra.com", "data_dsierra"),
+				    public_t281_co_unidades_negocio = Origen{[Schema="public",Item="t281_co_unidades_negocio"]}[Data],
+				    #"Filas filtradas" = Table.SelectRows(public_t281_co_unidades_negocio, each ([cia_id] = 8))
+				in
+				    #"Filas filtradas"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

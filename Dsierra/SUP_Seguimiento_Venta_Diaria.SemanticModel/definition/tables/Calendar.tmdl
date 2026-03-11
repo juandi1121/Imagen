@@ -1,0 +1,130 @@
+table Calendar
+	lineageTag: e0504246-4169-4bd5-b863-b6ef04eb3623
+
+	column Date
+		formatString: General Date
+		lineageTag: 0e7627a4-29e6-41de-9544-a2e4ac2f15ec
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variación
+			isDefault
+			relationship: 573282aa-774a-4c37-9763-fe05ec0f54bf
+			defaultHierarchy: LocalDateTable_79812f62-0f53-43fd-b979-c5c8c3fc41d1.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Año
+		formatString: 0
+		lineageTag: d07249d7-3b84-4579-8b5d-a8ed457530f4
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Año]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mes
+		lineageTag: 318b6f78-f1b8-4a2a-bfc0-36106e01fcd8
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Mes]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mes_Num
+		formatString: 0
+		lineageTag: b6837044-f4f7-4a52-9a41-11f0eb6c4d26
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Mes_Num]
+
+		annotation SummarizationSetBy = Automatic
+
+	column YYYYMM
+		lineageTag: 6fb6c1d3-275f-400e-8f08-019c26c5ce43
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [YYYYMM]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nombre_Mes_Año
+		lineageTag: 6ce8c6bb-4ae5-4377-aad4-cab5d44b30f8
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Nombre_Mes_Año]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Inicio_Mes
+		formatString: General Date
+		lineageTag: 7ff93d7b-af8a-4938-abfc-c1d689bff52a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Inicio_Mes]
+
+		variation Variación
+			isDefault
+			relationship: 88ae12d2-a1d7-49de-9437-66308353f4e8
+			defaultHierarchy: LocalDateTable_9ff6b88a-d7cc-4fe7-a56b-a3870af21bd0.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Días del Mes'
+		formatString: 0
+		lineageTag: 9fc31e75-a685-4547-b916-29b5ebb25340
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Días del Mes]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Orden Día Semana' = WEEKDAY('Calendar'[Date], 2)
+		formatString: 0
+		lineageTag: bb320e59-1359-4141-a781-3db9fdda5fa5
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Día Semana' =
+			
+			SWITCH(
+			    TRUE(),
+			    'Calendar'[Orden Día Semana] = 1, "Lun",
+			    'Calendar'[Orden Día Semana] = 2, "Mar",
+			    'Calendar'[Orden Día Semana] = 3, "Mié",
+			    'Calendar'[Orden Día Semana] = 4, "Jue",
+			    'Calendar'[Orden Día Semana] = 5, "Vie",
+			    'Calendar'[Orden Día Semana] = 6, "Sáb",
+			    "Dom"
+			)
+		lineageTag: 3a48ddb8-1bf3-4c26-a108-59fe6ea9e431
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Calendar = calculated
+		mode: import
+		source = ```
+				
+				VAR AnoInicio = 2024
+				VAR AnoFin = YEAR(TODAY()) 
+				RETURN
+				ADDCOLUMNS (
+				    CALENDAR (
+				        DATE(AnoInicio, 1, 1),
+				        DATE(AnoFin, 12, 31)
+				    ),
+				    "Año", YEAR([Date]),
+				    "Mes", FORMAT([Date], "MMMM"),
+				    "Mes_Num", MONTH([Date]),
+				    "YYYYMM", FORMAT([Date], "YYYYMM"),
+				    "Nombre_Mes_Año", FORMAT([Date], "MMM YYYY"),
+				    "Inicio_Mes", DATE(YEAR([Date]), MONTH([Date]), 1),
+				    "Días del Mes", DAY(EOMONTH([Date], 0))
+				)
+				```
+
+	annotation PBI_Id = b87d541009164c6897796d7af6623664
+

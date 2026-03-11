@@ -1,0 +1,81 @@
+table TablaRanking
+	lineageTag: 52337a83-a234-409e-aaab-8541932047d6
+
+	column Venta
+		lineageTag: bc962e52-216f-4771-8c4e-00fc0b28a780
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Venta]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Presupuesto
+		lineageTag: 2df0a10e-8fe4-4e95-950f-ace8143357b5
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Presupuesto]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column %Cump
+		lineageTag: 9ad98990-2f55-4ad0-989a-3cba85f30daa
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [%Cump]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Nombre_UN
+		lineageTag: dc03f588-1c8c-4496-8837-737e983fb54e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Unidades_Negocio[Nombre_UN]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		formatString: General Date
+		lineageTag: f8c34d74-2860-45ed-a742-3d070833300b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Calendar[Date]
+
+		variation Variación
+			isDefault
+			relationship: ed0efa41-a9cf-4976-95a7-cc277eb2a9ee
+			defaultHierarchy: LocalDateTable_8c080348-5772-42a3-a63e-41f55a9ae87e.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column centroop_id
+		lineageTag: bb4bc469-a951-4342-a143-cc85a34479df
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Centros_Operación[centroop_id]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition TablaRanking = calculated
+		mode: import
+		source =
+				
+				ADDCOLUMNS(
+				    SUMMARIZE(
+				        'Venta_Diaria',
+				        'Centros_Operación'[centroop_id],
+				        'Unidades_Negocio'[Nombre_UN],
+				        'Calendar'[Date]
+				    ),
+				    "Venta", CALCULATE([Venta_Diaria]),
+				    "Presupuesto", CALCULATE([Presupuesto_Hoy..]),
+				    "%Cump", DIVIDE([Venta_Diaria], [Presupuesto Hoy], 0)
+				)
+
+	annotation PBI_Id = fc233bc4c838403a8de56e8752930554
+

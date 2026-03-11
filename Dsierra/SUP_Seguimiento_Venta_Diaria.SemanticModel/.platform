@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "SUP_Seguimiento_Venta_Diaria"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "145e2fdb-bc74-4d75-9420-dd85f5b56299"
+  }
+}

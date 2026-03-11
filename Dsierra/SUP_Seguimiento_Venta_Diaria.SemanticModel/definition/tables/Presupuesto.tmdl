@@ -1,0 +1,68 @@
+table Presupuesto
+	lineageTag: 547b6214-7566-4bb0-88fd-89cb4e6673d9
+
+	column 'Source.Name'
+		dataType: string
+		lineageTag: c5c95280-52d4-42b9-80de-baeef7c61f0e
+		summarizeBy: none
+		sourceColumn: Source.Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'C.O'
+		dataType: string
+		lineageTag: ea2999fa-cc52-4482-af2f-e86aa8be214d
+		summarizeBy: none
+		sourceColumn: C.O
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'U.N'
+		dataType: int64
+		formatString: 0
+		lineageTag: 8ed12d1c-1d6a-4a57-a266-1f98c5533cc5
+		summarizeBy: none
+		sourceColumn: U.N
+
+		annotation SummarizationSetBy = Automatic
+
+	column FECHA
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: e17eb0b2-2657-4fc0-99d4-f2c12320de9a
+		summarizeBy: none
+		sourceColumn: FECHA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column PPTO
+		dataType: double
+		lineageTag: 9a9a28c8-4283-4d3a-ae75-32178a0970d3
+		summarizeBy: sum
+		sourceColumn: PPTO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Presupuesto = m
+		mode: import
+		source =
+				let
+				    Origen = SharePoint.Files("https://dsierraco.sharepoint.com/sites/CEAD", [ApiVersion = 15]),
+				    #"Filas filtradas" = Table.SelectRows(Origen, each ([Name] = "PRESUPUESTO.xlsx")),
+				    #"Archivos ocultos filtrados1" = Table.SelectRows(#"Filas filtradas", each [Attributes]?[Hidden]? <> true),
+				    #"Invocar función personalizada1" = Table.AddColumn(#"Archivos ocultos filtrados1", "Transformar archivo (2)", each #"Transformar archivo (2)"([Content])),
+				    #"Columnas con nombre cambiado1" = Table.RenameColumns(#"Invocar función personalizada1", {"Name", "Source.Name"}),
+				    #"Otras columnas quitadas1" = Table.SelectColumns(#"Columnas con nombre cambiado1", {"Source.Name", "Transformar archivo (2)"}),
+				    #"Columna de tabla expandida1" = Table.ExpandTableColumn(#"Otras columnas quitadas1", "Transformar archivo (2)", Table.ColumnNames(#"Transformar archivo (2)"(#"Archivo de ejemplo (2)"))),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Columna de tabla expandida1",{{"Source.Name", type text}, {"C.O", type text}, {"U.N", Int64.Type}, {"FECHA", type date}, {"PPTO", type number}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

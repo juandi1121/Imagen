@@ -1,0 +1,49 @@
+relationship 141a215b-df62-490d-afa6-059800d048f6
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Unidades_Negocio.unidad_negocio_ts
+	toColumn: LocalDateTable_6e1998c5-973f-413e-87c2-870f2fe3cb1b.Date
+
+relationship 795ac573-c865-c0e2-171e-3df88548d258
+	fromColumn: Venta_Diaria.unidad_negocio_serial
+	toColumn: Unidades_Negocio.unidad_negocio_serial
+
+relationship AutoDetected_c1072bf4-f6cd-4cfc-8da9-dc17db1ecd53
+	fromColumn: Venta_Diaria.centroop_serial
+	toColumn: Centros_Operación.centroop_serial
+
+relationship 64bfac14-3f28-0baa-fece-274a5a086f49
+	fromColumn: Presupuesto.'C.O'
+	toColumn: Centros_Operación.centroop_id
+
+relationship d44b4279-9d70-7ab7-2fb6-e2cab0834430
+	fromColumn: Presupuesto.'U.N'
+	toColumn: Unidades_Negocio.unidad_negocio_id
+
+relationship 1686bbb6-e2c6-432e-9f9a-4676e90e4d3d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Actualizacion.FechaHoraActualizacion
+	toColumn: LocalDateTable_e716b69a-10d4-4036-ad45-af25f0d1b831.Date
+
+relationship 573282aa-774a-4c37-9763-fe05ec0f54bf
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Calendar.Date
+	toColumn: LocalDateTable_79812f62-0f53-43fd-b979-c5c8c3fc41d1.Date
+
+relationship 7e17fc25-0e60-2b91-fa1a-0ca9b834a2e7
+	fromColumn: Venta_Diaria.id_fecha
+	toColumn: Calendar.Date
+
+relationship 4f3e24c1-4d15-558a-c99d-db853b6c2d94
+	fromColumn: Presupuesto.FECHA
+	toColumn: Calendar.Date
+
+relationship ed0efa41-a9cf-4976-95a7-cc277eb2a9ee
+	joinOnDateBehavior: datePartOnly
+	fromColumn: TablaRanking.Date
+	toColumn: LocalDateTable_8c080348-5772-42a3-a63e-41f55a9ae87e.Date
+
+relationship 88ae12d2-a1d7-49de-9437-66308353f4e8
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Calendar.Inicio_Mes
+	toColumn: LocalDateTable_9ff6b88a-d7cc-4fe7-a56b-a3870af21bd0.Date
+

@@ -1,0 +1,307 @@
+table Centros_Operación
+	lineageTag: 42e1ec1b-e700-4fca-b150-a27be9707dde
+
+	column cia_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 01b707c1-1244-47c8-92cc-557ab4e28221
+		summarizeBy: sum
+		sourceColumn: cia_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column centroop_serial
+		dataType: string
+		lineageTag: 2f56f6d6-9bab-43f0-ae88-66b68617f189
+		summarizeBy: none
+		sourceColumn: centroop_serial
+
+		annotation SummarizationSetBy = Automatic
+
+	column centroop_id
+		dataType: string
+		lineageTag: f5e44e38-34bf-493a-9f09-ac38aa55b014
+		summarizeBy: none
+		sourceColumn: centroop_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column centroop_descripcion
+		dataType: string
+		lineageTag: d263a0d0-4910-4c2f-ba34-916acc307b6e
+		summarizeBy: none
+		sourceColumn: centroop_descripcion
+
+		annotation SummarizationSetBy = Automatic
+
+	column regional_serial
+		dataType: string
+		lineageTag: 760be86b-dd1c-461f-8f8f-e181b9e2b800
+		summarizeBy: none
+		sourceColumn: regional_serial
+
+		annotation SummarizationSetBy = Automatic
+
+	column centroop_id_regional
+		dataType: string
+		lineageTag: 3487baab-80fb-401c-8ddd-411c26608942
+		summarizeBy: none
+		sourceColumn: centroop_id_regional
+
+		annotation SummarizationSetBy = Automatic
+
+	column centroop_ind_estado
+		dataType: int64
+		formatString: 0
+		lineageTag: c9de736d-4dbb-4a0c-8756-cebbf611115b
+		summarizeBy: sum
+		sourceColumn: centroop_ind_estado
+
+		annotation SummarizationSetBy = Automatic
+
+	column contact_contacto
+		dataType: string
+		lineageTag: 1d9adc79-f000-4ae9-b336-af12242ea476
+		summarizeBy: none
+		sourceColumn: contact_contacto
+
+		annotation SummarizationSetBy = Automatic
+
+	column contact_direccion1
+		dataType: string
+		lineageTag: 3c2afd99-b515-4311-acdf-8f001e6cd77f
+		summarizeBy: none
+		sourceColumn: contact_direccion1
+
+		annotation SummarizationSetBy = Automatic
+
+	column contact_direccion2
+		dataType: string
+		lineageTag: 09b98c3b-7e43-4e0c-9421-fd38af83da43
+		summarizeBy: none
+		sourceColumn: contact_direccion2
+
+		annotation SummarizationSetBy = Automatic
+
+	column contact_direccion3
+		dataType: string
+		lineageTag: 81e42ef6-7364-4242-83ee-988d6f178256
+		summarizeBy: none
+		sourceColumn: contact_direccion3
+
+		annotation SummarizationSetBy = Automatic
+
+	column contact_id_pais
+		dataType: string
+		lineageTag: 87e353ac-52d2-4be0-aa31-96a5728ad5c1
+		summarizeBy: none
+		sourceColumn: contact_id_pais
+
+		annotation SummarizationSetBy = Automatic
+
+	column contact_id_depto
+		dataType: string
+		lineageTag: 5206ee0c-01a0-44b6-a68f-bb347c3f983e
+		summarizeBy: none
+		sourceColumn: contact_id_depto
+
+		annotation SummarizationSetBy = Automatic
+
+	column contact_id_ciudad
+		dataType: string
+		lineageTag: f4d3b412-4394-46b2-a0f7-b61fa607ea91
+		summarizeBy: none
+		sourceColumn: contact_id_ciudad
+
+		annotation SummarizationSetBy = Automatic
+
+	column contact_id_barrio
+		dataType: string
+		lineageTag: e501d6dd-3729-4db2-827b-5e40816c8059
+		summarizeBy: none
+		sourceColumn: contact_id_barrio
+
+		annotation SummarizationSetBy = Automatic
+
+	column contact_telefono
+		dataType: string
+		lineageTag: d4702c86-1080-41d3-81e6-2b6fba9b1e71
+		summarizeBy: none
+		sourceColumn: contact_telefono
+
+		annotation SummarizationSetBy = Automatic
+
+	column contact_fax
+		dataType: string
+		lineageTag: 153d61c2-efbc-420a-854f-d06713db3e4f
+		summarizeBy: none
+		sourceColumn: contact_fax
+
+		annotation SummarizationSetBy = Automatic
+
+	column contact_email
+		dataType: string
+		lineageTag: dd43a456-cffa-4ea5-89f8-e1c16a10ae8c
+		summarizeBy: none
+		sourceColumn: contact_email
+
+		annotation SummarizationSetBy = Automatic
+
+	column contact_celular
+		dataType: string
+		lineageTag: 1a1622db-38f1-4518-9a77-f91711ce3d26
+		summarizeBy: none
+		sourceColumn: contact_celular
+
+		annotation SummarizationSetBy = Automatic
+
+	column centroop_tipo
+		dataType: string
+		lineageTag: 68a6a3d8-1759-4dd4-9ed1-ad8953f309ed
+		summarizeBy: none
+		sourceColumn: centroop_tipo
+
+		annotation SummarizationSetBy = Automatic
+
+	column regional_co_tipo
+		dataType: string
+		lineageTag: 08c38e3c-558f-44b3-bd3f-daa1488ca7a8
+		summarizeBy: none
+		sourceColumn: regional_co_tipo
+
+		annotation SummarizationSetBy = Automatic
+
+	column regional_co_departamento
+		dataType: string
+		lineageTag: bc6e47f3-def3-4a09-9ba9-deeeeffd18e4
+		summarizeBy: none
+		sourceColumn: regional_co_departamento
+
+		annotation SummarizationSetBy = Automatic
+
+	column regional_co_descripcion
+		dataType: string
+		lineageTag: 5694383a-e5bc-4a7a-911d-b4c291744586
+		summarizeBy: none
+		sourceColumn: regional_co_descripcion
+
+		annotation SummarizationSetBy = Automatic
+
+	column regional_co_serial
+		dataType: string
+		lineageTag: 2f0f8cda-f200-4e73-ad59-60cd1dc2b504
+		summarizeBy: none
+		sourceColumn: regional_co_serial
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ciudad = ```
+			
+			SWITCH(
+			    TRUE(),
+			    'Centros_Operación'[centroop_id] = "S01", "Pitalito",
+			    'Centros_Operación'[centroop_id] = "S02", "Pitalito",
+			    'Centros_Operación'[centroop_id] = "S03", "Pitalito",
+			    'Centros_Operación'[centroop_id] = "S04", "Florencia",
+			    'Centros_Operación'[centroop_id] = "S05", "Florencia",
+			    'Centros_Operación'[centroop_id] = "S06", "Ibagué",
+			    'Centros_Operación'[centroop_id] = "S07", "Pitalito",
+			    'Centros_Operación'[centroop_id] = "S08", "Ibagué",
+			    'Centros_Operación'[centroop_id] = "S09", "Ibagué",
+			    'Centros_Operación'[centroop_id] = "S10", "Neiva",
+			    'Centros_Operación'[centroop_id] = "S11", "Neiva",
+			    'Centros_Operación'[centroop_id] = "S12", "Garzón"
+			)
+			
+			```
+		lineageTag: cb230bd7-b723-4563-ac5f-b50addd0b2da
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ciudad Ordenada' = ```
+			
+			SWITCH(
+			    TRUE(),
+			    'Centros_Operación'[centroop_id] = "S01", "1.Pitalito",
+			    'Centros_Operación'[centroop_id] = "S02", "2.Pitalito",
+			    'Centros_Operación'[centroop_id] = "S03", "3.Pitalito",
+			    'Centros_Operación'[centroop_id] = "S04", "5.Florencia",
+			    'Centros_Operación'[centroop_id] = "S05", "6.Florencia",
+			    'Centros_Operación'[centroop_id] = "S06", "7.Ibagué",
+			    'Centros_Operación'[centroop_id] = "S07", "4.Pitalito",
+			    'Centros_Operación'[centroop_id] = "S08", "8.Ibagué",
+			    'Centros_Operación'[centroop_id] = "S09", "9.Ibagué",
+			    'Centros_Operación'[centroop_id] = "S10", "10.Neiva",
+			    'Centros_Operación'[centroop_id] = "S11", "11.Neiva",
+			    'Centros_Operación'[centroop_id] = "S12", "12.Garzón"
+			)
+			
+			```
+		lineageTag: 2535330b-371f-4d77-89b5-012a26d9ea0a
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nombre C.O' =
+			
+			SWITCH(
+			    TRUE(),
+			    'Centros_Operación'[centroop_id] = "S01", "Dsierra",
+			    'Centros_Operación'[centroop_id] = "S02", "San Antonio",
+			    'Centros_Operación'[centroop_id] = "S03", "Maxi",
+			    'Centros_Operación'[centroop_id] = "S04", "Florencia C",
+			    'Centros_Operación'[centroop_id] = "S05", "Florencia V",
+			    'Centros_Operación'[centroop_id] = "S06", "Salado",
+			    'Centros_Operación'[centroop_id] = "S07", "Solarte",
+			    'Centros_Operación'[centroop_id] = "S08", "Acqua",
+			    'Centros_Operación'[centroop_id] = "S09", "La 37",
+			    'Centros_Operación'[centroop_id] = "S10", "Neiva C",
+			    'Centros_Operación'[centroop_id] = "S11", "Neiva N",
+			    'Centros_Operación'[centroop_id] = "S12", "Garzón"
+			)
+		lineageTag: 0fa65fc3-4d4c-44c9-a1b7-00b75ebe82af
+		summarizeBy: none
+		sortByColumn: 'Orden Ciudad'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Orden Ciudad' =
+			
+			SWITCH(
+			    TRUE(),
+			    'Centros_Operación'[Ciudad Ordenada] = "1.Pitalito", 1,
+			    'Centros_Operación'[Ciudad Ordenada] = "2.Pitalito", 2,
+			    'Centros_Operación'[Ciudad Ordenada] = "3.Pitalito", 3,
+			    'Centros_Operación'[Ciudad Ordenada] = "4.Pitalito", 4,
+			    'Centros_Operación'[Ciudad Ordenada] = "5.Florencia", 5,
+			    'Centros_Operación'[Ciudad Ordenada] = "6.Florencia", 6,
+			    'Centros_Operación'[Ciudad Ordenada] = "7.Ibagué", 7,
+			    'Centros_Operación'[Ciudad Ordenada] = "8.Ibagué", 8,
+			    'Centros_Operación'[Ciudad Ordenada] = "9.Ibagué", 9,
+			    'Centros_Operación'[Ciudad Ordenada] = "10.Neiva", 10,
+			    'Centros_Operación'[Ciudad Ordenada] = "11.Neiva", 11,
+			    'Centros_Operación'[Ciudad Ordenada] = "12.Garzón", 12
+			)
+		formatString: 0
+		lineageTag: 330152b0-2c30-49b8-b716-6344cd1fb387
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Centros_Operación = m
+		mode: import
+		source =
+				let
+				    Origen = PostgreSQL.Database("automatizacion.dsierra.com", "data_dsierra"),
+				    public_t285_co_centro_op = Origen{[Schema="public",Item="t285_co_centro_op"]}[Data],
+				    #"Filas filtradas" = Table.SelectRows(public_t285_co_centro_op, each ([centroop_id] = "S01" or [centroop_id] = "S02" or [centroop_id] = "S03" or [centroop_id] = "S04" or [centroop_id] = "S05" or [centroop_id] = "S06" or [centroop_id] = "S07" or [centroop_id] = "S08" or [centroop_id] = "S09" or [centroop_id] = "S10" or [centroop_id] = "S11" or [centroop_id] = "S12"))
+				in
+				    #"Filas filtradas"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

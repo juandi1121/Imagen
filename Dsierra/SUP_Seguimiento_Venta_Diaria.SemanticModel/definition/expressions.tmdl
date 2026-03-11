@@ -1,0 +1,138 @@
+expression Parámetro2 = #"Archivo de ejemplo (2)" meta [IsParameterQuery=true, BinaryIdentifier=#"Archivo de ejemplo (2)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: 4dc9b9d0-cd98-4aa9-aea2-be8a71bab027
+	queryGroup: 'Transformar archivo de Consulta1\Consultas auxiliares'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transformar archivo de ejemplo (2)' =
+		let
+		    Origen = Excel.Workbook(Parámetro2, null, true),
+		    #"PPTO Pesos_Sheet" = Origen{[Item="PPTO Pesos",Kind="Sheet"]}[Data],
+		    #"Encabezados promovidos" = Table.PromoteHeaders(#"PPTO Pesos_Sheet", [PromoteAllScalars=true])
+		in
+		    #"Encabezados promovidos"
+	lineageTag: eb7f94f4-d01e-448b-a85d-202485aab24b
+	queryGroup: 'Transformar archivo de Consulta1'
+
+	annotation PBI_ResultType = Table
+
+expression 'Archivo de ejemplo (2)' =
+		let
+		    Origen = SharePoint.Files("https://dsierraco.sharepoint.com/sites/CEAD", [ApiVersion = 15]),
+		    #"Filas filtradas" = Table.SelectRows(Origen, each ([Name] = "PRESUPUESTO.xlsx")),
+		    Navegación1 = #"Filas filtradas"{0}[Content]
+		in
+		    Navegación1
+	lineageTag: 33d5bf4b-19a5-4c46-b063-e192574c5399
+	queryGroup: 'Transformar archivo de Consulta1\Consultas auxiliares'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transformar archivo (2)' =
+		let
+		    Origen = (Parámetro2 as binary) => let
+		    Origen = Excel.Workbook(Parámetro2, null, true),
+		    #"PPTO Pesos_Sheet" = Origen{[Item="PPTO Pesos",Kind="Sheet"]}[Data],
+		    #"Encabezados promovidos" = Table.PromoteHeaders(#"PPTO Pesos_Sheet", [PromoteAllScalars=true])
+		in
+		    #"Encabezados promovidos"
+		in
+		    Origen
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transformar archivo de ejemplo (2)""}" ]
+	lineageTag: 0b0ff9c0-650f-4459-ab50-41082c730a94
+	queryGroup: 'Transformar archivo de Consulta1\Consultas auxiliares'
+
+	annotation PBI_ResultType = Function
+
+expression Parámetro3 = #"Archivo de ejemplo (3)" meta [IsParameterQuery=true, BinaryIdentifier=#"Archivo de ejemplo (3)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: 204aa4e9-537f-4c0a-b18e-0750102f893b
+	queryGroup: 'Transformar archivo de Consulta1 (2)\Consultas auxiliares'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transformar archivo de ejemplo (3)' =
+		let
+		    Origen = Excel.Workbook(Parámetro3, null, true),
+		    Hoja1_Sheet = Origen{[Item="Hoja1",Kind="Sheet"]}[Data],
+		    #"Encabezados promovidos" = Table.PromoteHeaders(Hoja1_Sheet, [PromoteAllScalars=true])
+		in
+		    #"Encabezados promovidos"
+	lineageTag: 155dc157-03d6-4dcf-bce8-d2ef28c87b59
+	queryGroup: 'Transformar archivo de Consulta1 (2)'
+
+	annotation PBI_ResultType = Table
+
+expression 'Archivo de ejemplo (3)' =
+		let
+		    Origen = SharePoint.Files("https://dsierraco.sharepoint.com/sites/CEAD", [ApiVersion = 15]),
+		    #"Filas filtradas" = Table.SelectRows(Origen, each ([Name] = "Periodo.xlsx")),
+		    Navegación1 = #"Filas filtradas"{0}[Content]
+		in
+		    Navegación1
+	lineageTag: 2fd21ce2-39c3-4d00-ae46-1e581e356858
+	queryGroup: 'Transformar archivo de Consulta1 (2)\Consultas auxiliares'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transformar archivo (3)' =
+		let
+		    Origen = (Parámetro3 as binary) => let
+		    Origen = Excel.Workbook(Parámetro3, null, true),
+		    Hoja1_Sheet = Origen{[Item="Hoja1",Kind="Sheet"]}[Data],
+		    #"Encabezados promovidos" = Table.PromoteHeaders(Hoja1_Sheet, [PromoteAllScalars=true])
+		in
+		    #"Encabezados promovidos"
+		in
+		    Origen
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transformar archivo de ejemplo (3)""}" ]
+	lineageTag: 0459bc00-1f2f-4e77-9a26-e6e921faf867
+	queryGroup: 'Transformar archivo de Consulta1 (2)\Consultas auxiliares'
+
+	annotation PBI_ResultType = Function
+
+expression Parámetro4 = #"Archivo de ejemplo (4)" meta [IsParameterQuery=true, BinaryIdentifier=#"Archivo de ejemplo (4)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: b63db227-7d26-4a37-8c13-25876706993c
+	queryGroup: 'Transformar archivo de Consulta1 (3)\Consultas auxiliares'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transformar archivo de ejemplo (4)' =
+		let
+		    Origen = Excel.Workbook(Parámetro4, null, true),
+		    Margen_Sheet = Origen{[Item="Margen",Kind="Sheet"]}[Data],
+		    #"Encabezados promovidos" = Table.PromoteHeaders(Margen_Sheet, [PromoteAllScalars=true])
+		in
+		    #"Encabezados promovidos"
+	lineageTag: 893d18ee-1ef1-4ee4-8648-b1731e8b74b9
+	queryGroup: 'Transformar archivo de Consulta1 (3)'
+
+	annotation PBI_ResultType = Table
+
+expression 'Archivo de ejemplo (4)' =
+		let
+		    Origen = SharePoint.Files("https://dsierraco.sharepoint.com/sites/CEAD", [ApiVersion = 15]),
+		    #"Filas filtradas" = Table.SelectRows(Origen, each ([Name] = "Márgen.xlsx")),
+		    Navegación1 = #"Filas filtradas"{0}[Content]
+		in
+		    Navegación1
+	lineageTag: 821e0877-0275-4023-b8d8-ea08d75f0054
+	queryGroup: 'Transformar archivo de Consulta1 (3)\Consultas auxiliares'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transformar archivo (4)' =
+		let
+		    Origen = (Parámetro4 as binary) => let
+		    Origen = Excel.Workbook(Parámetro4, null, true),
+		    Margen_Sheet = Origen{[Item="Margen",Kind="Sheet"]}[Data],
+		    #"Encabezados promovidos" = Table.PromoteHeaders(Margen_Sheet, [PromoteAllScalars=true])
+		in
+		    #"Encabezados promovidos"
+		in
+		    Origen
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transformar archivo de ejemplo (4)""}" ]
+	lineageTag: 6d5ad8c0-7605-481e-bab9-9afaf66bf55d
+	queryGroup: 'Transformar archivo de Consulta1 (3)\Consultas auxiliares'
+
+	annotation PBI_ResultType = Function
+

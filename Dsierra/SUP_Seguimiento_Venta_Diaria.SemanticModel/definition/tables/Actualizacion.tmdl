@@ -1,0 +1,105 @@
+table Actualizacion
+	lineageTag: 6d8c94dd-b173-4d26-a45b-045ef7863f71
+
+	measure 'Última actualización' = ```
+			MAX(Actualizacion[FechaHoraActualizacion])
+			
+			```
+		lineageTag: a87d34d6-732f-4445-acf8-d87beff53f4f
+
+	measure Hora = ```
+			FORMAT(MAX(Actualizacion[FechaHoraActualizacion]), "hh:mm:ss a.m./p.m.")
+			
+			```
+		lineageTag: b70c15e8-7816-4265-97f2-a5dff66ebbdb
+
+	measure 'Presupuesto Hoy Simulado' = ```
+			
+			VAR HoraUTC_Simulada = DATE(2025, 9, 7) + TIME(0, 30, 0)  -- Simula UTC 00:30
+			VAR FechaHoraLocal = HoraUTC_Simulada - TIME(5, 0, 0)     -- Ajuste a UTC-5
+			VAR FechaLocal = DATE(YEAR(FechaHoraLocal), MONTH(FechaHoraLocal), DAY(FechaHoraLocal))
+			VAR FechaLimite =
+			    IF(
+			        ISFILTERED('Calendar'[Date]),
+			        MAX('Calendar'[Date]),
+			        FechaLocal
+			    )
+			RETURN
+			CALCULATE(
+			    SUM('Presupuesto'[PPTO]),
+			    FILTER(
+			        'Presupuesto',
+			        'Presupuesto'[Fecha] = FechaLimite
+			    )
+			) / 1000000
+			
+			```
+		formatString: #,0
+		lineageTag: 7556fcdc-457b-4c80-9c86-cdd5826818c3
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Venta Hoy Simulada' = ```
+			
+			VAR HoraUTC_Simulada = DATE(2025, 9, 7) + TIME(0, 30, 0)  -- Simula UTC 00:30
+			VAR FechaHoraLocal = HoraUTC_Simulada - TIME(5, 0, 0)     -- Ajuste a UTC-5
+			VAR FechaLocal = DATE(YEAR(FechaHoraLocal), MONTH(FechaHoraLocal), DAY(FechaHoraLocal))
+			RETURN
+			CALCULATE(
+			    SUM('Venta_Diaria'[mov_vlr_subtotal]),
+			    FILTER(
+			        'Venta_Diaria',
+			        'Venta_Diaria'[id_fecha] = FechaLocal
+			    ) 
+			)/ 1000000
+			
+			```
+		formatString: \$\ #,0;-\$\ #,0;\$\ #,0
+		lineageTag: b61621a7-24f7-4501-97cd-0a2f816807dc
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-CO"}
+
+	column FechaHoraActualizacion
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ca677c26-1463-44f4-ad03-5fafa40f2dea
+		summarizeBy: none
+		sourceColumn: FechaHoraActualizacion
+
+		variation Variación
+			isDefault
+			relationship: 1686bbb6-e2c6-432e-9f9a-4676e90e4d3d
+			defaultHierarchy: LocalDateTable_e716b69a-10d4-4036-ad45-af25f0d1b831.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Hora_Act
+		dataType: string
+		lineageTag: 0d6099de-a223-4019-b2a2-ad2400c64ce7
+		summarizeBy: none
+		sourceColumn: Hora_Act
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Actualizacion = m
+		mode: import
+		source =
+				let
+				    // Obtener hora actual en UTC
+				    HoraUTC = DateTimeZone.UtcNow(),
+				
+				    // Restar 5 horas manualmente
+				    HoraAjustada = DateTimeZone.RemoveZone(HoraUTC - #duration(0,5,0,0)),
+				
+				    // Crear tabla con la hora corregida
+				    Resultado = #table({"FechaHoraActualizacion"}, {{HoraAjustada}}),
+				    #"Personalizada agregada" = Table.AddColumn(Resultado, "Personalizado", each Time.ToText(Time.From([FechaHoraActualizacion]), "hh:mm:ss tt")),
+				    #"Columnas con nombre cambiado" = Table.RenameColumns(#"Personalizada agregada",{{"Personalizado", "Hora_Act"}}),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Columnas con nombre cambiado",{{"FechaHoraActualizacion", type datetime}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+
