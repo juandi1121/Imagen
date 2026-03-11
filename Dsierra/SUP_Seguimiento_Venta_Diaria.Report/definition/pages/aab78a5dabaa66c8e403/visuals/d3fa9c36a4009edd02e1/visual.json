@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "name": "d3fa9c36a4009edd02e1",
+  "position": {
+    "x": 25.562508321129013,
+    "y": 26.414591931833311,
+    "z": 5001,
+    "height": 101.39794967381174,
+    "width": 194.27506324058049,
+    "tabOrder": 5001
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Actualizacion"
+                    }
+                  },
+                  "Property": "Venta Hoy Simulada"
+                }
+              },
+              "queryRef": "Actualizacion.Venta Hoy Simulada",
+              "nativeQueryRef": "Venta Hoy Simulada"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Actualizacion"
+                  }
+                },
+                "Property": "Venta Hoy Simulada"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "c1e1ca861d53103c421c",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Actualizacion"
+              }
+            },
+            "Property": "Venta Hoy Simulada"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}
