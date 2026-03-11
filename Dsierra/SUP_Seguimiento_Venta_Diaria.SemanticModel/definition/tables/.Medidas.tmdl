@@ -238,6 +238,12 @@ table '.Medidas'
 			```
 		lineageTag: 13d2471c-a11d-4f75-bf51-55927e9eeda7
 
+	measure 'medida y' = CALCULATE(SUM(Venta_Diaria[mov_vlr_descuento]))
+		formatString: \$\ #,0.###############;-\$\ #,0.###############;\$\ #,0.###############
+		lineageTag: bc41a356-f8de-43fe-af00-3abe3e610801
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-CO"}
+
 	measure 'Fecha Local Simulada' = ```
 			
 			VAR HoraUTC_Simulada = DATE(2025, 9, 7) + TIME(0, 30, 0)  -- 00:30 a.m. UTC
