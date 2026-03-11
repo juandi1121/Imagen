@@ -250,12 +250,6 @@ table '.Medidas'
 		formatString: General Date
 		lineageTag: 8f006214-d4bd-40b6-be1f-6970eb718b5c
 
-	measure 'Venta prueba' = SUM(Venta_Diaria[mov_vlr_descuento])
-		formatString: \$\ #,0.###############;-\$\ #,0.###############;\$\ #,0.###############
-		lineageTag: 8028090e-cd5c-40f9-a106-f68a4bc6fe58
-
-		annotation PBI_FormatHint = {"currencyCulture":"es-CO"}
-
 	column Column
 		formatString: 0
 		lineageTag: 402b4aad-c332-4fc3-93e6-d68061379a9e
